@@ -9,4 +9,5 @@ Feature: Creating a user
     And I enable module "Rally Quality Manager"
     And I enable module "Rally Portfolio Manager"
     And I click submit for create subscription
-    Then A subscription is created
+    And I navigate to toggle features
+    And I toggle on "Enable bulk edit of all fields in ext2 grids"
