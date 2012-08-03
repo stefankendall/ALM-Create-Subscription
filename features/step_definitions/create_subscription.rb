@@ -21,7 +21,7 @@ end
 When /^I set the admin user to (.*)$/ do |user_name|
   switch_to_popup()
   @wait.until { @driver.find_element(name: 'adminUser') }
-  @driver.find_element(name: 'adminUser').send_keys "admin@test.com"
+  @driver.find_element(name: 'adminUser').send_keys user_name
 end
 
 When /^I set the admin password to (.*)/ do |password|
@@ -39,23 +39,16 @@ end
 
 When /^I click submit for create subscription$/ do
   @driver.find_element(id: 'save_and_close_btn').click
-  sleep 7
+  @wait.until { @driver.window_handles.length == 1 }
 end
 
 When /^I navigate to toggle features$/ do
   @driver.switch_to.window @main_handle
-  tools_tab = @driver.find_elements(:tag_name => 'a').select {|link|
-    link.text().include? 'Tools'
-  }[0]
-  @driver.mouse.move_to tools_tab
-
-  toggle_link = @driver.find_elements(:class => 'rui-navigation-menu-item').select {|link|
-    link.text().include? 'Toggle Features'
-  }[0].attribute('href')
-  @driver.navigate.to toggle_link
+  @driver.navigate.to('http://localhost:7001/#/1d/admin/togglefeatures')
 end
 
-When /^And I toggle on "(.*)"$/ do |toggle_name|
+When /^I toggle on "(.*?)"$/ do |toggle_name|
+  sleep 5
   row = @driver.find_elements(:tag_name => 'tr').select { |row|
     row.text().include? toggle_name
   }[0]
