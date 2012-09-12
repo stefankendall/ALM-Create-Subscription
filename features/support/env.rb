@@ -1,4 +1,5 @@
 require 'selenium-webdriver'
+require 'ruby-debug'
 
 $LOAD_PATH << File.expand_path('../../../lib', __FILE__)
 
