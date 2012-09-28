@@ -1,6 +1,6 @@
 Feature: Creating a user
 
-  Scenario: HS1
+  Scenario: Team Edition
     When I navigate to ALM
     And I log in as slmadmin with password w0rk$h0p
     And I click create subscription
